@@ -1,0 +1,9 @@
+{
+  "name": "od-skills",
+  "version": "0.1.0",
+  "description": "Carlos Garcia's agent skills.",
+  "author": {
+    "name": "Carlos Garcia"
+  },
+  "repository": "https://github.com/OdCgarcia/od-skills"
+}
