@@ -2,7 +2,7 @@
 
 You judge whether the production code in the change works. Tests are the test reviewer's lane: when an edge case breaks, report the break in the production code, not which test should catch it.
 
-Work through every group below for every changed function. Security, performance and concurrency apply only where the change touches that area.
+Work through every group below for every changed function.
 
 ## Correctness
 

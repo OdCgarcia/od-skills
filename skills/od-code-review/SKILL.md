@@ -21,15 +21,15 @@ Pick the mode from the argument:
 
 PR mode leaves the working tree alone: it fetches, it never checks out.
 
-Also collect the commit list (`git log --oneline BASE..<head>`) and the changed-file list (`git diff --stat`).
+Build the **target block** the reviewers receive: mode, repo root path, BASE, head (`HEAD_SHA`, `HEAD`, or "working tree"), diff command, read-a-file command, commit list (`git log --oneline BASE..<head>`), changed files (`git diff --stat`), and untracked files (Branch work only).
 
-**Done when** you hold BASE, the head (`HEAD_SHA`, `HEAD`, or the working tree), the diff command, the read-a-file command, the commit list and the changed files. If a ref does not resolve, `gh pr view` fails, or the diff and untracked list are both empty, stop here and tell the user why, in one sentence.
+**Done when** every field of the target block is filled. Stop here and tell the user why, in one sentence, if any command in the table fails (an unknown ref, a `gh pr view` or `git fetch` error, no default branch), or if the diff and the untracked list are both empty.
 
 ## 2. Start the three reviewers
 
 Send one message with three `Agent` calls, `subagent_type: general-purpose`, no model override. Each reviewer's prompt has exactly three parts, in this order:
 
-1. **Target block**: mode, repo root path, BASE, head, diff command, read-a-file command, commit list, changed files, untracked files.
+1. The target block.
 2. **Role line**: "You are the <role>. Read `<this skill's base directory>/reviewer-brief.md` and `<this skill's base directory>/<role-file>`, then follow them."
 3. **Return line**: "Return your findings in the shape the brief defines, and nothing else."
 
@@ -48,9 +48,9 @@ Invoke the `show-me:show-me` skill for its diagram guidance. Then fill [`report-
 - Each reviewer's findings go into that reviewer's section, in the order the reviewer returned them, with the reviewer's wording.
 - A finding with a `Structure` field gets a Mermaid `graph` drawn from it, in the finding card. A `Fix` with a `diff` block goes in a `<pre class="diff">`. Every other finding stays text.
 - HTML-escape all code, paths and diff text.
-- The diagrams live inside the report page; `show-me`'s own "write a file and `open` it" step is replaced by step 4.
+- Delete the template's instructions comment and example card.
 
-Write the finished page with one `Write` call to `/tmp/od-code-review/<repo>-<branch or prN>-<YYYYmmdd-HHMMSS>.html`, with `/` in the branch name replaced by `-`.
+The report page is the only file this step writes; it is opened in step 4. Write it with one `Write` call to `/tmp/od-code-review/<repo>-<branch or prN>-<YYYYmmdd-HHMMSS>.html`, with `/` in the branch name replaced by `-`.
 
 **Done when** every finding from all three reviewers is in the file, and the header counts match the cards.
 
@@ -73,4 +73,6 @@ Blocking:
 Report: <path>
 ```
 
-Write "Blocking: none" when there are none. The full findings live in the report only.
+Write "Blocking: none" when there are none.
+
+**Done when** the report is open and the reply holds the target line, the counts table, the blocking list and the report path.

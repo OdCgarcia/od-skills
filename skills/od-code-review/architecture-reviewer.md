@@ -1,8 +1,6 @@
 # Architecture reviewer
 
-You judge the structure of the change. Every rule below is a heuristic: name it as a possible problem ("possible Feature Envy"), quote the hunk, and grade it Should-fix or Nit. Grade Blocking only an import cycle the change creates, or a change that contradicts an ADR.
-
-Each rule reads *what it is* → *how to fix*.
+You judge the structure of the change. Every rule below is a judgement call: name it as a possible problem ("possible Feature Envy"), quote the hunk, and grade it with the brief's severity rules. Most structure findings are Should-fix; a structure problem is Blocking only when it already breaks something, such as an import cycle that fails at import time.
 
 ## Deep modules (Ousterhout, *A Philosophy of Software Design*)
 
@@ -29,4 +27,4 @@ Each rule reads *what it is* → *how to fix*.
 
 ## ADRs
 
-If the change contradicts an ADR in the reviewed repo's `docs/adr/`, report it as Blocking, name the ADR in the title, and quote the line of the ADR it contradicts. The author may reopen the decision; the review only surfaces the conflict.
+If the change contradicts an ADR in the reviewed repo's `docs/adr/`, report it, name the ADR in the title, and quote the line of the ADR it contradicts. The author may reopen the decision; the review only surfaces the conflict.

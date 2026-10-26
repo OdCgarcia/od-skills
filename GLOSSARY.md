@@ -5,19 +5,19 @@ Agent skills for OD Studios developers, packaged as an installable Claude Code p
 ## Language
 
 **Architecture reviewer**:
-The code reviewer that judges a change's structure: module boundaries, dependency direction, coupling and cohesion.
+The code reviewer that judges how a change is structured.
 _Avoid_: design reviewer, standards reviewer
 
 **Test reviewer**:
-The code reviewer that judges the tests in a change and the new behaviour that has no test.
+The code reviewer that judges a change's tests, and the new behaviour that has none.
 _Avoid_: coverage reviewer
 
 **QA reviewer**:
-The code reviewer that judges whether a change works: correctness, edge cases, error handling and regressions.
+The code reviewer that judges whether the production code in a change works.
 _Avoid_: Q&A reviewer, quality reviewer
 
 **Review target**:
-The change a code review judges: a GitHub PR, the diff since a given ref, or the current branch's work including uncommitted changes.
+The change a code review judges.
 _Avoid_: scope, input
 
 ### Severity
